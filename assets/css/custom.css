@@ -1,0 +1,32 @@
+/*
+
+TemplateMo 569 Edu Meeting
+
+https:
+
+*/
+
+body {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.main-nav .nav li a {
+    color: white !important;
+}
+
+.main-nav .nav li.has-sub > a:after {
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+}
