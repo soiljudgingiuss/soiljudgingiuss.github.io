@@ -1,0 +1,288 @@
+/* =============================================================
+   SJ Carousel — responsive photo carousel for Soil Judging IUSS
+   No dependencies (no jQuery, no Owl, no Slick).
+   Palette follows assets/css/templatemo-edu-meeting.css:
+     red #a12c2f · amber #f5a425 · ink #1f272b
+   ============================================================= */
+
+.sj-carousel {
+  --sj-red: #a12c2f;
+  --sj-amber: #f5a425;
+  --sj-ink: #1f272b;
+  --sj-radius: 20px;
+  margin: 35px 0 40px;
+}
+
+/* ---------- caption above the carousel ---------- */
+.sj-carousel__title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sj-red);
+  margin: 0 0 12px;
+}
+
+/* ---------- stage ---------- */
+.sj-carousel__stage {
+  position: relative;
+  border-radius: var(--sj-radius);
+  overflow: hidden;
+  background: var(--sj-ink);
+}
+
+.sj-carousel__viewport {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  aspect-ratio: 16 / 10;
+  max-height: 70vh;
+}
+
+.sj-carousel__viewport::-webkit-scrollbar { display: none; }
+
+.sj-carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sj-ink);
+}
+
+/* the template sets a global `img { width: 100% }` — undo it here */
+.sj-carousel__slide img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  cursor: zoom-in;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ---------- per-slide caption ---------- */
+.sj-carousel__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 42px 18px 14px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: #fff !important;
+  text-align: center;
+  background: linear-gradient(to top, rgba(31, 39, 43, .85), rgba(31, 39, 43, 0));
+  pointer-events: none;
+}
+
+/* ---------- arrows ---------- */
+.sj-carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(250, 250, 250, .9);
+  color: var(--sj-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .3s;
+  z-index: 3;
+}
+
+.sj-carousel__nav:hover { background-color: var(--sj-red); color: #fff; }
+.sj-carousel__nav:focus-visible { outline: 3px solid var(--sj-amber); outline-offset: 2px; }
+.sj-carousel__nav svg { width: 18px; height: 18px; }
+.sj-carousel__nav--prev { left: 14px; }
+.sj-carousel__nav--next { right: 14px; }
+
+.sj-carousel__nav[disabled] { opacity: .3; cursor: default; }
+.sj-carousel__nav[disabled]:hover { background-color: rgba(250, 250, 250, .9); color: var(--sj-ink); }
+
+/* ---------- counter chip ---------- */
+.sj-carousel__counter {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sj-ink);
+  background-color: rgba(250, 250, 250, .9);
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+/* ---------- dots ---------- */
+.sj-carousel__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sj-carousel__dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: #d6d6d6;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.sj-carousel__dot:hover { background-color: var(--sj-amber); }
+.sj-carousel__dot:focus-visible { outline: 2px solid var(--sj-amber); outline-offset: 3px; }
+.sj-carousel__dot[aria-current="true"] { background-color: var(--sj-red); width: 26px; border-radius: 5px; }
+
+/* ---------- progress bar (used instead of dots when there are many photos) ---------- */
+.sj-carousel__progress {
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 2px;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.sj-carousel__progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  background-color: var(--sj-red);
+  transition: width .25s ease;
+}
+
+/* ---------- hint ---------- */
+.sj-carousel__hint {
+  font-size: 12px !important;
+  color: #888 !important;
+  text-align: center;
+  margin: 10px 0 0 !important;
+}
+
+/* =============================================================
+   Lightbox
+   ============================================================= */
+.sj-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f272b;
+  padding: 64px 16px;
+}
+
+.sj-lightbox.is-open { display: flex; }
+body.sj-lightbox-open { overflow: hidden; }
+
+.sj-lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.sj-lightbox__caption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 18px;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #fff !important;
+}
+
+.sj-lightbox__btn {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(250, 250, 250, .9);
+  color: var(--sj-ink, #1f272b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.sj-lightbox__btn:hover { background-color: #a12c2f; color: #fff; }
+.sj-lightbox__btn:focus-visible { outline: 3px solid #f5a425; outline-offset: 2px; }
+.sj-lightbox__btn svg { width: 20px; height: 20px; }
+.sj-lightbox__btn--close { top: 14px; right: 14px; }
+
+.sj-lightbox__count {
+  position: absolute;
+  top: 22px;
+  left: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgba(255, 255, 255, .14);
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+.sj-lightbox__btn--prev { left: 14px; top: 50%; transform: translateY(-50%); }
+.sj-lightbox__btn--next { right: 14px; top: 50%; transform: translateY(-50%); }
+.sj-lightbox__btn[disabled] { opacity: .3; cursor: default; }
+
+/* =============================================================
+   Responsive
+   ============================================================= */
+@media (max-width: 991px) {
+  .sj-carousel__viewport { aspect-ratio: 3 / 2; }
+}
+
+@media (max-width: 767px) {
+  .sj-carousel { margin: 25px 0 30px; }
+  .sj-carousel__viewport { aspect-ratio: 4 / 3; max-height: 60vh; }
+  .sj-carousel__nav { width: 38px; height: 38px; border-radius: 10px; }
+  .sj-carousel__nav--prev { left: 8px; }
+  .sj-carousel__nav--next { right: 8px; }
+  .sj-carousel__counter { top: 10px; right: 10px; font-size: 12px; padding: 4px 9px; }
+  .sj-carousel__caption { font-size: 12px; line-height: 17px; padding: 34px 12px 11px; }
+  .sj-lightbox { padding: 70px 8px; }
+  .sj-lightbox__btn--prev { left: 8px; }
+  .sj-lightbox__btn--next { right: 8px; }
+}
+
+/* Touch devices: the arrows overlap the photo less if we keep them,
+   but swiping is the primary gesture — arrows stay for accessibility. */
+@media (hover: none) {
+  .sj-carousel__nav:hover { background-color: rgba(250, 250, 250, .9); color: var(--sj-ink); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sj-carousel__viewport { scroll-behavior: auto; }
+  .sj-carousel__nav,
+  .sj-carousel__dot,
+  .sj-carousel__progress span { transition: none; }
+}
