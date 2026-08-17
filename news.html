@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+      /* The template resets paragraph margins to 0, which runs the news
+         summaries together. Restore spacing on this page only. */
+      .meeting-single-item .down-content p { margin-bottom: 20px; }
+    </style>
 <!--
 
 TemplateMo 569 Edu Meeting
@@ -108,6 +114,30 @@ https://templatemo.com/tm-569-edu-meeting
             <div class="col-lg-12">
               <div class="meeting-single-item">
                 <div class="thumb">
+                  <a href="news/2026-international-contest/">
+                    <img src="news/2026-international-contest/images/contest/contest-01.jpg" alt="All participants of the 5th International Soil Judging Contest gathered in the field" style="width: 100%; max-height: 400px; object-fit: cover;">
+                  </a>
+                </div>
+                <div class="down-content">
+                  <h4>Contest Recap: The 5<sup>th</sup> International Soil Judging Contest Brings a Record 14 Countries Together in China</h4>
+                  <p style="margin-bottom: 20px;"><strong>Published:</strong> August 2026 | <strong>Source:</strong> IUSS International Soil Judging Working Group</p>
+
+                  <p>Eighteen teams representing 14 countries gathered in Nanjing, China, for the 5th International Soil Judging Contest, hosted by the Institute of Soil Science, Chinese Academy of Sciences (ISSAS). Held every four years alongside the World Congress of Soil Science, the 2026 edition had the highest participation ever recorded.</p>
+
+                  <p>For the first time, contestants were asked to learn and apply two global soil classification systems &mdash; U.S. Soil Taxonomy and the World Reference Base for Soil Resources &mdash; across the loess deposits, fluvial soils and centuries-old terraced landscapes of the Nanjing and Jurong area.</p>
+
+                  <p>Team USA Stripes took the title of World Champion Soil Judging Team, Team &ldquo;Barefoot&rdquo; Germany won the group judging, and Holden Mrizek was the highest scoring individual of the 72 contestants. The full recap, with photo galleries from the training, the field, the contest and the awards ceremony, is on the article page.</p>
+
+                  <div class="main-button-red" style="margin-top: 20px;">
+                    <a href="news/2026-international-contest/">Read more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12" style="margin-top: 50px;">
+              <div class="meeting-single-item">
+                <div class="thumb">
                   <img src="assets/images/soil-chart.jpg" alt="National Soil Judging Contest" style="width: 100%; max-height: 400px; object-fit: cover;">
                 </div>
                 <div class="down-content">
@@ -153,7 +183,45 @@ https://templatemo.com/tm-569-edu-meeting
         </div>
       </div>
     </div>
-  </se>©5il Judging IUSS. All Rights Reserved.
+  </section>
 
-  ts -->pai</script>
-S = to 
+  <section class="contact-us" id="contact" style="padding-top: 60px;">
+    <div class="container">
+      <!-- Footer -->
+      <div class="footer">
+        <p> -- Soil Judging | International Union of Soil Sciences -- </p>
+        <p>IUSS <a href="https://iuss.org" target="_parent" title="The International Union of Soil Sciences (IUSS) is the global union of soil scientists">https://iuss.org</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script>
+    /* Header behaviour, copied from assets/js/custom.js.
+       custom.js is not loaded here on purpose: it also initialises isotope,
+       owl-carousel and the homepage counters, none of which exist on this
+       page, and it throws on every scroll event when they are absent. */
+    (function ($) {
+      'use strict';
+      $(window).on('scroll', function () {
+        var box = $('.header-text').height();
+        var header = $('header').height();
+        if ($(window).scrollTop() >= box - header) {
+          $('header').addClass('background-header');
+        } else {
+          $('header').removeClass('background-header');
+        }
+      });
+      if ($('.menu-trigger').length) {
+        $('.menu-trigger').on('click', function () {
+          $(this).toggleClass('active');
+          $('.header-area .nav').slideToggle(200);
+        });
+      }
+    })(window.jQuery);
+  </script>
+
+</body>
+</html>
