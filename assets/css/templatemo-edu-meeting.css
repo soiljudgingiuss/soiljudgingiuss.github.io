@@ -1829,3 +1829,32 @@ responsive
   }
 
 }
+
+/* ---------------------------------------------------------------
+   This site is designed for light backgrounds only. Without this
+   declaration, Android / Samsung Internet dark mode auto-inverts
+   the page and the hamburger bars end up black on dark grey.
+   --------------------------------------------------------------- */
+:root {
+  color-scheme: only light;
+}
+
+/* Belt and braces: the bars take the same colour as the text around
+   them, so if a browser forces dark anyway, they change along with
+   the logo instead of staying black. */
+.header-area .main-nav .menu-trigger,
+.background-header .main-nav .menu-trigger {
+  color: #1e1e1e;
+}
+
+.header-area .main-nav .menu-trigger span,
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after,
+.header-area .main-nav .menu-trigger.active span:before,
+.header-area .main-nav .menu-trigger.active span:after {
+  background-color: currentColor;
+}
+
+.header-area .main-nav .menu-trigger.active span {
+  background-color: transparent;
+}
